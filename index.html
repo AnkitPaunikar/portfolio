@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="nav">
+        <div class="Portfolio__logo">
+          <a href="/">Portfolio</a>
+        </div>
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a data-target="#modal1" href="#">About</a>
+          </li>
+          <li class="nav__item">
+            <a data-target="#modal2" href="#">Skills</a>
+          </li>
+          <li class="nav__item">
+            <a data-target="#modal3" href="#">Contact</a>
+          </li>
+        </ul>
+
+        <div id="hamburger-icon" onclick="toggleMobileMenu(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <ul class="mobile-menu">
+            <li class="nav__Mobile">
+              <a data-target="#modal1" href="#">About</a>
+            </li>
+            <li class="nav__Mobile">
+              <a data-target="#modal2" href="#">Skills</a>
+            </li>
+            <li class="nav__Mobile">
+              <a data-target="#modal3" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="eyes">
+        <div class="eye eye1"></div>
+        <div class="eye eye2"></div>
+      </div>
+    </section>
+    <section class="heading">
+      <div class="container">
+        <h3>Hello,</h3>
+        <h1>I'm <span class="highlight"> Ankit </span> Paunikar</h1>
+        <h2>Front-End Developer</h2>
+        <h3>From Mumbai</h3>
+
+        <button
+          class="btnResume"
+          onclick="window.open('ResumeAnkit.pdf','_blank')"
+        >
+          <span>Resume</span>
+        </button>
+      </div>
+      <img
+        class="responsive_image"
+        src="./assets/coding-freak.gif"
+        alt="program"
+      />
+    </section>
+
+    <div class="modal modal_one hidden" id="modal1">
+      <div class="close-model-div">
+        <button class="close-modal">&times;</button>
+      </div>
+      <h2>
+        <img
+          src="./assets/icons8-male-user.gif"
+          alt="user"
+          style="vertical-align: bottom"
+        />
+        <span>About Me</span>
+      </h2>
+
+      <hr class="line" />
+      <p class="p_About">
+        I have over two years of expertise as a software developer, and my job
+        entails gathering and developing requirements from clients for
+        applications I have developed applications using
+        <b>React.js, Next.js, JavaScript, Typescript, Node.js and Unqork</b>.
+        Additionally, I have used Jira and Confluence for requirement
+        maintenance.
+      </p>
+      <h2>Experience</h2>
+      <hr class="line" />
+      <p class="p_experience">Software Engineer</p>
+      <p class="p_experience">Mumbai, India</p>
+      <p class="p_experience">
+        Chenoa Information and Software services / Oct 2022 to Current
+      </p>
+
+      <p class="p_About">
+        • Analysing client requirements and coordinating with the team for
+        development timelines and plan testing.
+      </p>
+      <p class="p_About">
+        • Working on solutions and coding fixes for requirements using React.js,
+        Typescript, Next.js, JavaScript, Node.js.
+      </p>
+      <p class="p_About">
+        • Working on Jira, Confluence, Azure DevOps to manage requirements and
+        timelines.
+      </p>
+
+      <p class="p_experience">Associate Software Engineer</p>
+      <p class="p_experience">Mumbai, India</p>
+      <p class="p_experience">
+        Chenoa Information and Software services / Oct 2021 to Oct 2022
+      </p>
+
+      <p class="p_About">
+        • Working with the client on making the business workflow using
+        Lucidchart and maintaining artifacts and documents for the application.
+      </p>
+      <p class="p_About">• Working on developing solutions for requirements.</p>
+      <p class="p_About">
+        • Maintaining Jira for the timeline of development and plan testing.
+      </p>
+      <p class="p_About">
+        • Preparing and presenting application demos to the client.
+      </p>
+    </div>
+
+    <div class="modal modal_two hidden" id="modal2">
+      <div class="close-model-div">
+        <button class="close-modal">&times;</button>
+      </div>
+      <h2>
+        <img
+          src="./assets/icons8-checklist.gif"
+          alt="SkillSet"
+          style="vertical-align: middle"
+        />
+        <span>Skill Set</span>
+      </h2>
+      <hr class="line" />
+      <ul class="skills">
+        <li>Tableau</li>
+      </ul>
+      <h2>
+        <span>Projects</span>
+      </h2>
+      <hr class="line" />
+      <ul class="projects">
+        <li>
+          Movie App
+          <p class="p_About">
+            This application is a catalogue of movies. The Movies API from
+            "themoviedb" is used to get data, the technology used is Angular,
+            and collections like Primeflex and Primeng are used for styling UI
+            components.
+            <br />
+            <a target="_blank" href="https://ankitmoviescatalogue.netlify.app"
+              >Github Link</a
+            >
+            <br />
+            <a target="_blank" href="https://ankitmoviescatalogue.netlify.app"
+              >Preview</a
+            >
+          </p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="modal modal_three hidden" id="modal3">
+      <div class="close-model-div">
+        <button class="close-modal">&times;</button>
+      </div>
+      <h2>Contacts</h2>
+      <hr class="line" />
+      <li class="contact_links"><b>Mobile No</b>: 7715824563</li>
+      <li class="contact_links"><b>Email</b>: ankitkpaunikar@gmail.com</li>
+
+      <a
+        target="_blank"
+        href="https://www.linkedin.com/in/ankit-paunikar-822361204"
+        ><img
+          class="social_icon"
+          src="./assets/icons8-linkedin.gif"
+          alt="Linkedin"
+      /></a>
+
+      <a target="_blank" href="https://github.com/AnkitPaunikar">
+        <img class="social_icon" src="./assets/icons8-github.gif" alt="Github"
+      /></a>
+    </div>
+
+    <div class="overlay hidden"></div>
+  </body>
+
+  <script src="script.js" defer></script>
+</html>
