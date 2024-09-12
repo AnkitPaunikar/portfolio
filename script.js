@@ -2,7 +2,9 @@
 
 const links = document.querySelectorAll("[data-target]");
 const overlay = document.querySelector(".overlay");
-const btncloseModal = document.querySelectorAll(".close-modal");
+const btncloseModal = document.querySelectorAll(
+  ".close-modal, .close_modal_three "
+);
 
 const containerSkills = document.querySelector(".skills");
 const containerProjects = document.querySelector(".projects");
@@ -11,13 +13,13 @@ document.querySelector("html").addEventListener("mousemove", eyeball);
 
 const skills = [
   "React.js",
-  "Next.js",
   "Typescript",
-  "Microsoft SQL Server",
   "JavaScript",
+  "MS SQL",
+  "Next.js",
+  "Node.js",
   "Figma",
   "Tableau",
-  "Unqork",
 ];
 
 const projects = [
@@ -187,7 +189,6 @@ function toggleMobileMenu(menu) {
 //Get the button
 var mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
   scrollFunction();
 };
@@ -205,3 +206,126 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+const scrollers = document.querySelectorAll(".scroller");
+
+// If a user hasn't opted in for reduced motion, then we add the animation
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  addAnimation();
+}
+
+function addAnimation() {
+  scrollers.forEach((scroller) => {
+    scroller.setAttribute("data-animated", true);
+
+    const scrollerInner = scroller.querySelector(".scroller__inner");
+
+    scrollerInner.innerHTML = "";
+
+    skills.forEach((skill) => {
+      const li = document.createElement("li");
+      li.textContent = skill;
+      scrollerInner.appendChild(li);
+    });
+    const originalItems = Array.from(scrollerInner.children);
+    originalItems.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      duplicatedItem.setAttribute("aria-hidden", true);
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  });
+}
+
+const naruto = document.getElementById("naruto");
+const speechBubble = document.getElementById("speech-bubble");
+
+const messages = [
+  "Hey there!",
+  "Hire me!",
+  "Need a coder?",
+  "Let’s chat!",
+  "Got work?",
+  "I’m ready!",
+  "What’s up?",
+  "Here to help!",
+  "Let’s build!",
+];
+
+let messageIndex = 0;
+
+let isDragging = false;
+let offsetX, offsetY;
+
+// Function to handle dragging
+function handleDrag(event) {
+  if (!isDragging) return;
+
+  const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+  const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+
+  const newLeft = clientX - offsetX;
+  const newTop = clientY - offsetY;
+
+  naruto.style.left = `${newLeft}px`;
+  naruto.style.top = `${newTop}px`;
+}
+
+// Mouse and touch event listeners for dragging
+naruto.addEventListener("mousedown", (event) => {
+  isDragging = true;
+  offsetX = event.clientX - naruto.getBoundingClientRect().left;
+  offsetY = event.clientY - naruto.getBoundingClientRect().top;
+  naruto.style.cursor = "grabbing";
+  event.preventDefault();
+});
+
+naruto.addEventListener("touchstart", (event) => {
+  isDragging = true;
+  offsetX = event.touches[0].clientX - naruto.getBoundingClientRect().left;
+  offsetY = event.touches[0].clientY - naruto.getBoundingClientRect().top;
+  naruto.style.cursor = "grabbing";
+  event.preventDefault();
+});
+
+document.addEventListener("mousemove", (event) => {
+  if (isDragging) {
+    requestAnimationFrame(() => handleDrag(event));
+  }
+});
+
+document.addEventListener("touchmove", (event) => {
+  if (isDragging) {
+    requestAnimationFrame(() => handleDrag(event));
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  naruto.style.cursor = "grab";
+});
+
+document.addEventListener("touchend", () => {
+  isDragging = false;
+  naruto.style.cursor = "grab";
+});
+
+// Show speech bubble at intervals
+function showSpeechBubble() {
+  speechBubble.textContent = messages[messageIndex];
+  speechBubble.style.opacity = 1;
+  speechBubble.style.transform = "translateX(-50%) translateY(-10px)";
+  setTimeout(() => {
+    speechBubble.style.opacity = 0;
+    speechBubble.style.transform = "translateX(-50%) translateY(0)";
+  }, 3000);
+
+  messageIndex = (messageIndex + 1) % messages.length;
+}
+
+setInterval(showSpeechBubble, 5000);
+
+window.addEventListener("resize", () => {
+  naruto.style.top = "45%";
+  naruto.style.left = "70%";
+  naruto.style.transform = "translate(-45%, -70%)";
+});

@@ -22,6 +22,10 @@ html {
 body {
   margin: 0rem;
   overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 h1 {
@@ -180,8 +184,8 @@ li {
 }
 
 .responsive_image {
-  max-width: 30%;
-  height: 30%;
+  max-width: 25%;
+  height: 25%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -447,7 +451,6 @@ li {
   width: 80%;
   height: 70%;
   background-color: rgb(255, 255, 255);
-  padding: 6rem;
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.5);
   z-index: 10;
@@ -462,7 +465,6 @@ li {
   width: 80%;
   height: 70%;
   background-color: rgb(255, 255, 255);
-  padding: 6rem;
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.5);
   z-index: 10;
@@ -477,11 +479,22 @@ li {
   width: 30%;
   height: 40%;
   background-color: rgb(255, 255, 255);
-  padding: 6rem;
   border-radius: 5px;
+  padding: 4%;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.5);
   z-index: 10;
   overflow: auto;
+}
+
+.close_modal_three {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -560,7 +573,6 @@ li {
 
 .close-modal {
   position: absolute;
-  top: 1.2rem;
   right: 2rem;
   font-size: 5rem;
   color: #333;
@@ -570,8 +582,159 @@ li {
 }
 
 .close-model-div {
+  position: sticky;
   display: flex;
-  flex-direction: column;
-  align-items: end;
+  flex-direction: row;
+  align-items: center;
   top: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  padding: 3.5%;
+  box-shadow: 0 3px 6px var(--gradian-color-first);
+}
+
+.modal_content {
+  padding: 5%;
+}
+
+.scroller {
+  max-width: 60%;
+}
+
+.scroller__inner {
+  padding-block: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.scroller[data-animated="true"] {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(
+    90deg,
+    transparent,
+    var(--gradian-color-Second) 20%,
+    var(--gradian-color-Second) 80%,
+    transparent
+  );
+  mask: linear-gradient(
+    90deg,
+    transparent,
+    var(--gradian-color-Second) 20%,
+    var(--gradian-color-Second) 80%,
+    transparent
+  );
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+  width: max-content;
+  flex-wrap: nowrap;
+  animation: scroll var(--_animation-duration, 40s)
+    var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction="right"] {
+  --_animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+  --_animation-direction: forwards;
+}
+
+.scroller[data-speed="fast"] {
+  --_animation-duration: 20s;
+}
+
+.scroller[data-speed="slow"] {
+  --_animation-duration: 60s;
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.tag-list {
+  margin: 0;
+  padding-inline: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 1rem;
+  background: var(--gradian-color-Second);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem -0.25rem black;
+}
+
+.naruto {
+  width: 100px;
+  height: 100px;
+  background-image: url("./assets/wolf-removebg-preview.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 45%;
+  left: 70%;
+  transform: translate(-45%, -70%);
+  cursor: grab;
+  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out,
+    left 0.3s ease-in-out;
+  animation: float 2.5s ease-in-out infinite;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.naruto:active {
+  cursor: grabbing;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  min-width: 80px;
+  transform: translateX(-50%);
+  background-color: var(--gradian-color-Second);
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 13px;
+  color: #000000;
+  box-shadow: 0px 5px 15px black;
+  opacity: 0;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.speech-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--gradian-color-Second) transparent transparent transparent;
+  z-index: 5;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-45%, -48%);
+  }
+  50% {
+    transform: translate(-45%, -52%);
+  }
 }
